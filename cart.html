@@ -1,0 +1,923 @@
+
+     <!-- SANDHU -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>THE SANDHU LABEL - Cart</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <style>
+        /* Cart Page Styling Improvements (Kept from previous, adjust if needed in style.css) */
+        .cart-page table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .cart-info {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+
+        .cart-info img {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        .cart-item td:last-child {
+            font-weight: bold;
+        }
+
+        /* Coupon/Delivery Section Styling */
+        .coupon-section {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+            margin-top: 20px;
+        }
+
+        .coupon-section input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+            width: 150px;
+            border-radius: 4px;
+        }
+
+        .coupon-section button {
+            padding: 8px 15px;
+            background-color: #5c6770;
+            /* Slightly darker button for coupon */
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .coupon-section button:hover {
+            background-color: #4a545c;
+        }
+
+        /* --- MODAL BASE STYLES --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            /* Darker backdrop */
+            padding-top: 60px;
+            backdrop-filter: blur(3px);
+            /* Blur effect */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border: none;
+            width: 85%;
+            max-width: 450px;
+            /* Slimmer look */
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+/* SANDHU */
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #ff523b;
+            text-decoration: none;
+            cursor: pointer;
+        }
+/* SANDHU */
+        /* --- PAYMENT MODAL STYLES --- */
+        .payment-option {
+            padding: 12px;
+            border: 1px solid #ddd;
+            margin-bottom: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .payment-option:hover {
+            background-color: #fff0ed;
+            border-color: #ff523b;
+            transform: translateY(-2px);
+        }
+
+        .payment-option i {
+            font-size: 20px;
+            margin-right: 15px;
+            color: #ff523b;
+            min-width: 25px;
+            /* Ensures alignment */
+            text-align: center;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff523b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background-color: #e5462d;
+        }
+
+        /* --- SUCCESS MODAL STYLES --- */
+        .success-content {
+            text-align: center;
+        }
+
+        .success-content i.ri-checkbox-circle-fill {
+            font-size: 60px;
+            color: #4CAF50;
+            margin-bottom: 15px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .rating-stars {
+            font-size: 28px;
+            color: #ffc107;
+            /* Star color */
+            margin: 15px 0;
+        }
+
+        .rating-stars span {
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .rating-stars span:hover {
+            transform: scale(1.1);
+        }
+
+        #customer-feedback {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 10px;
+            resize: vertical;
+        }
+
+        .continue-btn {
+            background-color: #4CAF50;
+        }
+
+        .continue-btn:hover {
+            background-color: #45a049;
+        }
+        
+        /* NEW Address Modal Form Styling */
+        #address-form input {
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+    </style>
+</head>
+<!-- SANDHU -->
+<body onload="updateCartTotal()">
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="NEW_LOGO.png" alt="" width="125px" /></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                    <li><a href="account.html">Account</a></li>
+                </ul>
+            </nav>
+            <!-- ṢANDHU -->
+            <a href="cart.html"><img src="cart.png" alt="" width="30px" height="30px" /></a>
+            <img src="menu.png" alt="" class="menu-icon" onclick="menutoggle()" />
+        </div>
+    </div>
+
+    <div class="small-container cart-page">
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+
+            <tr class="cart-item" id="item-1" data-price="50.00">
+                <td>
+                    <div class="cart-info">
+                        <img src="buy-1.jpg" alt="" />
+                        <div>
+                            <p>Red Printed T-shirt</p>
+                            <small class="item-price">Price: $50.00</small>
+                            <br />
+                            <a href="#" onclick="removeItem('item-1')">Remove</a>
+                        </div>
+                    </div>
+                </td>
+                <td><input type="number" value="1" min="1" class="item-quantity" onchange="updateCartTotal()" /></td>
+                <td class="item-subtotal">$50.00</td>
+            </tr>
+
+            <tr class="cart-item" id="item-2" data-price="85.50">
+                <td>
+                    <div class="cart-info">
+                        <img src="buy-2.jpg" alt="" />
+                        <div>
+                            <p>Black Casual Shoes</p>
+                            <small class="item-price">Price: $85.50</small>
+                            <br />
+                            <a href="#" onclick="removeItem('item-2')">Remove</a>
+                        </div>
+                    </div>
+                </td>
+                <td><input type="number" value="1" min="1" class="item-quantity" onchange="updateCartTotal()" /></td>
+                <td class="item-subtotal">$85.50</td>
+            </tr>
+
+            <tr class="cart-item" id="item-3" data-price="65.00">
+                <td>
+                    <div class="cart-info">
+                        <img src="buy-3.jpg" alt="" />
+                        <div>
+                            <p>Gray Track Pants</p>
+                            <small class="item-price">Price: $65.00</small>
+                            <br />
+                            <a href="#" onclick="removeItem('item-3')">Remove</a>
+                        </div>
+                    </div>
+                </td>
+                <td><input type="number" value="1" min="1" class="item-quantity" onchange="updateCartTotal()" /></td>
+                <td class="item-subtotal">$65.00</td>
+            </tr>
+        </table>
+
+        <div class="coupon-section">
+            <i class="ri-coupon-3-fill" style="color:#ff523b; font-size: 20px; margin-right: 5px;"></i>
+            <input type="text" id="coupon-input" placeholder="Enter Coupon Code" />
+            <button onclick="applyCoupon()">APPLY</button>
+        </div>
+
+        <div class="total-price">
+            <table>
+                <tr>
+                    <td>Subtotal</td>
+                    <td id="cart-subtotal">$200.50</td>
+                </tr>
+                <tr>
+                    <td>Discount <span id="discount-label" style="color: #4CAF50; font-weight: normal;"></span></td>
+                    <td id="cart-discount" style="color: #4CAF50;">-$0.00</td>
+                </tr>
+                <tr>
+                    <td>Tax (GST)</td>
+                    <td id="cart-tax">$20.05</td>
+                </tr>
+                <tr>
+                    <td>Delivery Charges</td>
+                    <td id="delivery-charges" style="color: #ff523b;">$5.00</td>
+                </tr>
+                <tr>
+                    <td
+                        style="font-size: 1.1em; font-weight: bold; border-top: 1px solid #ccc; padding-top: 10px;">
+                        **Grand Total**</td>
+                    <td id="cart-grand-total"
+                        style="font-size: 1.1em; font-weight: bold; color: #333; border-top: 1px solid #ccc; padding-top: 10px;">
+                        **$225.55**</td>
+                </tr>
+            </table>
+            <div style="text-align: right; margin-top: 20px;">
+                <button onclick="openAddressModal()" class="checkout-btn">
+                    <i class="ri-arrow-right-circle-line"></i> PROCEED TO CHECKOUT
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="addressModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeAddressModal()">&times;</span>
+            <h2
+                style="color: #ff523b; border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; text-align: center;">
+                Delivery Address 📍</h2>
+            <form id="address-form" onsubmit="event.preventDefault(); saveAddressAndOpenPayment();">
+
+                <label for="fullName" style="font-weight: 500; display: block; margin-top: 10px;">Full Name</label>
+                <input type="text" id="fullName" required placeholder="John Sandhu"
+                    style="width: 95%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+
+                <label for="addressLine1" style="font-weight: 500; display: block;">Address Line 1</label>
+                <input type="text" id="addressLine1" required placeholder="Flat No., Building Name, Street"
+                    style="width: 95%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+
+                <label for="city" style="font-weight: 500; display: block;">City</label>
+                <input type="text" id="city" required placeholder="New Delhi"
+                    style="width: 95%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+
+                <label for="pincode" style="font-weight: 500; display: block;">Pincode</label>
+                <input type="text" id="pincode" required pattern="\d{6}" placeholder="110001 (6 digits)"
+                    style="width: 95%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+
+                <button type="submit" class="checkout-btn" style="background-color: #ff523b; margin-top: 10px;">
+                    <i class="ri-map-pin-line"></i> Save Address & Continue
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closePaymentModal()">&times;</span>
+            <h2
+                style="color: #ff523b; border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; text-align: center;">
+                Choose Payment Option</h2>
+            <p
+                style="text-align: center; margin-bottom: 15px; font-weight: bold; background-color: #f7f7f7; padding: 10px; border-radius: 5px;">
+                Total Payable: <span id="modal-grand-total" style="color: #ff523b; font-size: 22px;"></span>
+            </p>
+
+            <div class="payment-option" onclick="selectPaymentMethod('UPI')">
+                <i class="fas fa-qrcode"></i> UPI (GPay, PhonePe, Paytm)
+            </div>
+            <div class="payment-option" onclick="selectPaymentMethod('Card')">
+                <i class="ri-credit-card-fill"></i> Credit / Debit Card
+            </div>
+            <div class="payment-option" onclick="selectPaymentMethod('Net Banking')">
+                <i class="ri-bank-line"></i> Net Banking
+            </div>
+            <div class="payment-option" onclick="selectPaymentMethod('Pay Later')">
+                <i class="ri-time-line"></i> Pay Later (EMI / BNPL)
+            </div>
+            <div class="payment-option" onclick="selectPaymentMethod('COD')">
+                <i class="ri-truck-line"></i> Cash on Delivery (COD)
+            </div>
+            <div class="payment-option" onclick="selectPaymentMethod('Wallet')">
+                <i class="ri-wallet-line"></i> Wallets (Mobikwik, Amazon Pay)
+            </div>
+
+            <button id="complete-payment-btn" class="checkout-btn" onclick="simulatePayment()">
+                <i class="ri-check-line"></i> Complete Payment
+            </button>
+        </div>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content success-content">
+            <span class="close-button" onclick="closeSuccessModal()">&times;</span>
+            <i class="ri-checkbox-circle-fill"></i>
+            <h2 style="color: #4CAF50; margin-top: 0;">Order Placed Successfully!</h2>
+            <p style="font-style: italic; color: #555;">
+                "Your style is our passion! Thank you for choosing <B>THE SANDHU LABEL</B>."
+            </p>
+            <p style="font-weight: bold; margin-top: 20px;">
+                How was your shopping experience?
+            </p>
+
+            <div class="rating-stars" id="rating-container">
+                <span data-rating="1" class="ri-star-line" onclick="setRating(1)"></span>
+                <span data-rating="2" class="ri-star-line" onclick="setRating(2)"></span>
+                <span data-rating="3" class="ri-star-line" onclick="setRating(3)"></span>
+                <span data-rating="4" class="ri-star-line" onclick="setRating(4)"></span>
+                <span data-rating="5" class="ri-star-line" onclick="setRating(5)"></span>
+            </div>
+
+            <textarea id="customer-feedback" rows="3"
+                placeholder="Share your feedback or comment here..."></textarea>
+            <button class="checkout-btn continue-btn" onclick="openScratchCardModal()">
+                <i class="ri-gift-line"></i> Claim Your Reward!
+            </button>
+        </div>
+    </div>
+
+    <div id="scratchCardModal" class="modal">
+        <div class="modal-content success-content">
+            <span class="close-button" onclick="closeScratchCardModal()">&times;</span>
+            <i class="ri-gift-line" style="color: #ffc107; font-size: 60px; margin-bottom: 15px;"></i>
+            <h2 style="color: #333; margin-top: 0;">🎉 Claim Your Surprise! 🎉</h2>
+            <p style="font-style: italic; color: #555;">
+                As a token of appreciation from **THE SANDHU LABEL**, here's a scratch card for your next
+                purchase!
+            </p>
+
+            <div id="scratch-area"
+                style="width: 90%; max-width: 300px; height: 120px; background-color: #5c6770; border-radius: 10px; margin: 20px auto; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; user-select: none; cursor: pointer;">
+                <div id="scratch-cover"
+                    style="position: absolute; width: 100%; height: 100%; background-color: #5c6770; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; font-weight: bold; transition: opacity 0.5s;">
+                    <i class="ri-hand-draw-line" style="margin-right: 5px;"></i> SCRATCH ME!
+                </div>
+                <div id="scratch-prize"
+                    style="color: #ff523b; font-size: 24px; font-weight: bold; text-align: center; padding: 10px; line-height: 1.2;">
+                    YOU WON:<br> **$10 VOUCHER** <span
+                        style="font-size: 14px; display: block; font-weight: normal; color: #333; margin-top: 5px;">Code:
+                        WELCOME10</span>
+                </div>
+            </div>
+
+            <p id="scratch-message" style="font-weight: bold; color: green; display: none;">Your prize has been
+                revealed! Use the code on your next order.</p>
+
+            <button class="checkout-btn continue-btn" onclick="closeScratchCardModal()"
+                style="margin-top: 20px; background-color: #1890ff;">
+                <i class="ri-shopping-bag-line"></i> Back to Shopping
+            </button>
+        </div>
+    </div>
+
+
+    <div class="footer"
+        style="background-color: #000; color: white; padding: 40px 0; text-align: center; font-family: Arial, sans-serif;">
+        <div class="container" style="max-width: 1500px; margin: auto;">
+
+            <div class="row"
+                style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start; gap: 30px;">
+
+                <div class="footer-col-1" style="flex: 1; min-width: 220px;">
+                    <h3 style="margin-bottom: 15px;">DOWNLOAD OUR APP</h3>
+                    <p style="font-size: 14px;">DOWNLOAD APP FOR ANDROID AND IOS MOBILE PHONES GOOGLE PLAY</p>
+                    <div class="app-logo" style="margin-top: 10px;">
+                        <a href="https://play.google.com/store" target="_blank">
+                            <img src="play-store.png" alt="Google Play" style="width: 130px; margin: 5px;" />
+                        </a>
+                        <a href="https://www.apple.com/app-store/" target="_blank">
+                            <img src="app-store.png" alt="App Store" style="width: 130px; margin: 5px;" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col-2" style="flex: 1; min-width: 300px;">
+                    <img src="NEW_LOGO.png" alt="The Sandhu Label" style="width: 180px; margin-bottom: 15px;" />
+                </div>
+
+                <div class="footer-col-3" style="flex: 1; min-width: 220px;">
+                    <h3 style="margin-bottom: 15px;">USEFUL LINKS</h3>
+                    <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+                        <a href="https://www.coupons.com/" target="_blank"
+                            style="color: white; font-size: 28px; text-decoration: none;">
+                            <i class="ri-price-tag-3-fill"></i>
+                        </a>
+                        <a href="https://blog.google/" target="_blank"
+                            style="color: white; font-size: 28px; text-decoration: none;">
+                            <i class="ri-article-fill"></i>
+                        </a>
+                        <a href="https://www.amazon.in/gp/help/customer/display.html?nodeId=201819300"
+                            target="_blank" style="color: white; font-size: 28px; text-decoration: none;">
+                            <i class="ri-refresh-fill"></i>
+                        </a>
+
+                        <a href="https://www.yoursite.com/privacy-policy" target="_blank"
+                            style="color: white; font-size: 28px; text-decoration: none;">
+                            <i class="ri-lock-2-fill"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col-4" style="flex: 1; min-width: 220px;">
+                    <h3 style="margin-bottom: 15px;">FOLLOW US</h3>
+                    <div style="display: flex; justify-content: center; gap: 25px;">
+                        <a href="https://www.facebook.com/" target="_blank"
+                            style="color: white; font-size: 26px; text-decoration: none;">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank"
+                            style="color: white; font-size: 26px; text-decoration: none;">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank"
+                            style="color: white; font-size: 26px; text-decoration: none;">
+                            <i class="ri-instagram-fill"></i>
+                        </a>
+                        <a href="https://www.youtube.com/" target="_blank"
+                            style="color: white; font-size: 26px; text-decoration: none;">
+                            <i class="ri-youtube-fill"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="margin: 30px auto; width: 80%; border: 0.5px solid #333;" />
+            <p style="font-size: 14px; color: #ccc;">© 2025 - THE SANDHU LABEL</p>
+        </div>
+    </div>
+
+
+    <script src="toggleMenu.js"></script>
+
+    <script>
+        // Global variables for cart state
+        let currentDiscount = 0;
+        let selectedPayment = 'Not Selected';
+        let deliveryAddress = {}; // New global object to store address
+        const TAX_RATE = 0.10; // 10% Tax
+        const DELIVERY_CHARGE = 5.00; // Fixed Delivery Charge
+        const COUPON_CODE = "SANDHU10"; // Sample Coupon Code
+        const COUPON_DISCOUNT_PERCENT = 0.10; // 10% Discount
+
+        /**
+         * 1. Updates the subtotal for each item and calculates the final cart totals.
+         */
+        function updateCartTotal() {
+            const cartItems = document.querySelectorAll('.cart-item');
+            let cartSubtotal = 0;
+
+            cartItems.forEach(item => {
+                const price = parseFloat(item.getAttribute('data-price'));
+                const quantityInput = item.querySelector('.item-quantity');
+                let quantity = parseInt(quantityInput.value) || 0;
+
+                if (quantity < 1 || isNaN(quantity)) {
+                    quantityInput.value = 1;
+                    quantity = 1;
+                }
+
+                const itemSubtotal = price * quantity;
+                item.querySelector('.item-subtotal').textContent = `$${itemSubtotal.toFixed(2)}`;
+
+                cartSubtotal += itemSubtotal;
+            });
+
+            // If the cart is empty, show 0 total
+            if (cartSubtotal === 0) {
+                document.getElementById('cart-subtotal').textContent = `$0.00`;
+                document.getElementById('cart-discount').textContent = `-$0.00`;
+                document.getElementById('cart-tax').textContent = `$0.00`;
+                document.getElementById('delivery-charges').textContent = `$0.00`;
+                document.getElementById('cart-grand-total').textContent = `$0.00`;
+                document.getElementById('modal-grand-total').textContent = `$0.00`;
+                return;
+            }
+
+            // Apply Discount
+            let discountAmount = cartSubtotal * currentDiscount;
+
+            // Calculate Tax (Tax is applied AFTER discount, typically)
+            const subtotalAfterDiscount = cartSubtotal - discountAmount;
+            const taxAmount = subtotalAfterDiscount * TAX_RATE;
+
+            // Calculate Grand Total
+            const grandTotal = subtotalAfterDiscount + taxAmount + DELIVERY_CHARGE;
+
+            // Update the Total Price table
+            document.getElementById('cart-subtotal').textContent = `$${cartSubtotal.toFixed(2)}`;
+            document.getElementById('cart-discount').textContent = `-$${discountAmount.toFixed(2)}`;
+            document.getElementById('cart-tax').textContent = `$${taxAmount.toFixed(2)}`;
+            document.getElementById('delivery-charges').textContent = `$${DELIVERY_CHARGE.toFixed(2)}`;
+            document.getElementById('cart-grand-total').textContent = `$${grandTotal.toFixed(2)}`;
+
+            // Update modal total
+            document.getElementById('modal-grand-total').textContent = `$${grandTotal.toFixed(2)}`;
+        }
+
+        /**
+         * 2. Handles the removal of an item from the cart table.
+         * @param {string} itemId - The ID of the item row to remove.
+         */
+        function removeItem(itemId) {
+            const itemRow = document.getElementById(itemId);
+            if (itemRow) {
+                if (confirm('Are you sure you want to remove this item from the cart?')) {
+                    itemRow.remove();
+                    updateCartTotal();
+                    alert("Item removed successfully!");
+                }
+            }
+        }
+
+        /**
+         * 3. Handles the application of a coupon code.
+         */
+        function applyCoupon() {
+            const couponInput = document.getElementById('coupon-input').value.toUpperCase().trim();
+            const discountLabel = document.getElementById('discount-label');
+
+            if (couponInput === COUPON_CODE) {
+                currentDiscount = COUPON_DISCOUNT_PERCENT;
+                discountLabel.textContent = `(${COUPON_DISCOUNT_PERCENT * 100}% Applied!)`;
+                alert(`Coupon '${COUPON_CODE}' applied successfully! You get ${COUPON_DISCOUNT_PERCENT * 100}% off.`);
+                document.getElementById('coupon-input').style.borderColor = 'green';
+            } else if (couponInput === "") {
+                currentDiscount = 0;
+                discountLabel.textContent = "";
+                alert("Coupon removed.");
+                document.getElementById('coupon-input').style.borderColor = '#ccc';
+            }
+            else {
+                currentDiscount = 0;
+                discountLabel.textContent = "(None)";
+                alert("Invalid Coupon Code. Try 'SANDHU10'");
+                document.getElementById('coupon-input').style.borderColor = 'red';
+            }
+
+            updateCartTotal();
+        }
+
+        // ===================================
+        // NEW ADDRESS MODAL FUNCTIONS
+        // ===================================
+
+        /**
+         * 4. Opens the Address Modal.
+         */
+        function openAddressModal() {
+            // Check if cart is empty before opening modal
+            if (document.querySelectorAll('.cart-item').length === 0) {
+                alert("Your cart is empty. Please add items to proceed to checkout. 🛒");
+                return;
+            }
+            document.getElementById('addressModal').style.display = 'block';
+        }
+
+        /**
+         * 5. Closes the Address Modal.
+         */
+        function closeAddressModal() {
+            document.getElementById('addressModal').style.display = 'none';
+        }
+
+        /**
+         * 6. Saves address details and proceeds to open the Payment Modal.
+         */
+        function saveAddressAndOpenPayment() {
+            // Basic validation
+            const fullName = document.getElementById('fullName').value.trim();
+            const addressLine1 = document.getElementById('addressLine1').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const pincode = document.getElementById('pincode').value.trim();
+
+            if (!fullName || !addressLine1 || !city || !pincode || pincode.length !== 6 || isNaN(pincode)) {
+                alert("Please fill in a valid 6-digit Pincode and all required address fields.");
+                return;
+            }
+
+            deliveryAddress = { fullName, addressLine1, city, pincode };
+            console.log("Delivery Address Saved:", deliveryAddress);
+
+            closeAddressModal();
+            openPaymentModal();
+        }
+
+        // ===================================
+        // PAYMENT MODAL FUNCTIONS
+        // ===================================
+
+        /**
+         * 7. Opens the Payment Modal.
+         */
+        function openPaymentModal() {
+            document.getElementById('paymentModal').style.display = 'block';
+            selectPaymentMethod('Card'); // Default selection
+        }
+
+        /**
+         * 8. Closes the Payment Modal.
+         */
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        /**
+         * 9. Selects a payment method and highlights it.
+         */
+        function selectPaymentMethod(method) {
+            selectedPayment = method;
+            const options = document.querySelectorAll('.payment-option');
+            options.forEach(opt => {
+                opt.style.backgroundColor = '#fefefe'; // Reset background
+                opt.style.borderColor = '#ddd';       // Reset border
+            });
+
+            // Find the selected option and highlight it
+            const selectedOpt = Array.from(options).find(opt => opt.textContent.includes(method));
+            if (selectedOpt) {
+                selectedOpt.style.backgroundColor = '#e6f7ff'; // Light blue for selection
+                selectedOpt.style.borderColor = '#1890ff';     // Blue border
+            }
+        }
+
+        /**
+         * 10. Simulates the payment process and opens the Success Modal.
+         */
+        function simulatePayment() {
+            const btn = document.getElementById('complete-payment-btn');
+
+            btn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Processing Payment...';
+            btn.disabled = true;
+
+            // Simulate server delay (2 seconds)
+            setTimeout(() => {
+                closePaymentModal();
+                btn.innerHTML = '<i class="ri-check-line"></i> Complete Payment';
+                btn.disabled = false;
+
+                // Clear the cart on successful payment
+                document.querySelectorAll('.cart-item').forEach(item => item.remove());
+                updateCartTotal(); // Recalculate to show empty cart totals
+
+                // Open the success popup
+                openSuccessModal();
+            }, 2000);
+        }
+
+        // ===================================
+        // SUCCESS & RATING MODAL FUNCTIONS
+        // ===================================
+
+        /**
+         * 11. Opens the Success Modal.
+         */
+        function openSuccessModal() {
+            document.getElementById('successModal').style.display = 'block';
+            // Reset rating and feedback for a new purchase
+            setRating(0);
+            document.getElementById('customer-feedback').value = '';
+
+            // Reset the button state (Crucial for the reward flow)
+            const continueBtn = document.querySelector('#successModal .continue-btn');
+            continueBtn.textContent = 'Claim Your Reward!';
+            continueBtn.onclick = openScratchCardModal;
+            continueBtn.style.backgroundColor = '#ff523b';
+            continueBtn.innerHTML = '<i class="ri-gift-line"></i> Claim Your Reward!';
+        }
+
+        /**
+         * 12. Closes the Success Modal.
+         */
+        function closeSuccessModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+
+        /**
+         * 13. Sets the 5-star rating.
+         */
+        function setRating(rating) {
+            const stars = document.querySelectorAll('#rating-container span');
+            let ratingValue = 0;
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.remove('ri-star-line');
+                    star.classList.add('ri-star-fill');
+                    ratingValue = rating;
+                } else {
+                    star.classList.remove('ri-star-fill');
+                    star.classList.add('ri-star-line');
+                }
+            });
+
+            if (ratingValue > 0) {
+                console.log(`User rated: ${ratingValue} stars`);
+                // Quick message to thank user
+                const existingMsg = document.getElementById('rating-temp-msg');
+                if (existingMsg) existingMsg.remove();
+                
+                const msg = document.createElement('p');
+                msg.id = 'rating-temp-msg';
+                msg.style = 'color: #ff523b; font-weight: bold;';
+                msg.textContent = 'Thank you for your rating! Please claim your reward.';
+                document.getElementById('rating-container').insertAdjacentElement('afterend', msg);
+                
+                setTimeout(() => {
+                    const tempMsg = document.getElementById('rating-temp-msg');
+                    if(tempMsg) tempMsg.remove();
+                }, 2000);
+            }
+        }
+
+        // ===================================
+        // NEW SCRATCH CARD MODAL FUNCTIONS
+        // ===================================
+
+        /**
+         * 14. Opens the Scratch Card Modal.
+         */
+        function openScratchCardModal() {
+            closeSuccessModal(); // Close the rating modal first
+            document.getElementById('scratchCardModal').style.display = 'block';
+
+            // Reset the scratch card state
+            document.getElementById('scratch-cover').style.opacity = '1';
+            document.getElementById('scratch-message').style.display = 'none';
+
+            // Set up the scratch functionality 
+            const scratchArea = document.getElementById('scratch-area');
+            // Remove previous listener to prevent multiple triggers
+            scratchArea.onclick = null; 
+            scratchArea.onclick = revealPrize;
+        }
+
+        /**
+         * 15. Closes the Scratch Card Modal.
+         */
+        function closeScratchCardModal() {
+            document.getElementById('scratchCardModal').style.display = 'none';
+        }
+
+        /**
+         * 16. Reveals the prize when the scratch area is clicked.
+         */
+        function revealPrize() {
+            const cover = document.getElementById('scratch-cover');
+            const message = document.getElementById('scratch-message');
+
+            cover.style.opacity = '0'; // Hide the scratch cover
+            message.style.display = 'block';
+
+            // Remove click listener after one use
+            document.getElementById('scratch-area').onclick = null;
+        }
+
+
+        // ===================================
+        // WINDOW CLICK HANDLER (Updated)
+        // ===================================
+
+        // Close the modal if the user clicks anywhere outside of it
+        window.onclick = function (event) {
+            const modal1 = document.getElementById('paymentModal');
+            const modal2 = document.getElementById('successModal');
+            const modal3 = document.getElementById('addressModal');
+            const modal4 = document.getElementById('scratchCardModal');
+
+            if (event.target == modal1) {
+                modal1.style.display = "none";
+            }
+            if (event.target == modal2) {
+                modal2.style.display = "none";
+            }
+            if (event.target == modal3) {
+                modal3.style.display = "none";
+            }
+            if (event.target == modal4) {
+                modal4.style.display = "none";
+            }
+        }
+
+    </script>
+</body>
+
+</html>

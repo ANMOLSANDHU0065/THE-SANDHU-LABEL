@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | THE SANDHU LABEL - Defining Performance Since 2002</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* --- GENERAL ALIGNMENT & STRUCTURE --- */
+      .about-section-title {
+        text-align: center;
+        margin: 60px 0 30px;
+        font-size: 38px;
+        font-weight: 700;
+        color: #1a1a1a;
+        position: relative;
+        padding-bottom: 10px;
+      }
+      .about-section-title::after {
+        content: '';
+        background: #ff523b;
+        width: 100px;
+        height: 5px;
+        border-radius: 5px;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .about-us-content {
+        padding: 50px 0 20px 0;
+      }
+
+      .about-row {
+        display: flex;
+        align-items: center; /* Vertically center content */
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 50px 0;
+        padding: 0 10px;
+      }
+
+      .about-col-2 {
+        flex-basis: 48%;
+        min-width: 300px;
+        margin-bottom: 30px;
+      }
+
+      .about-col-2 h2 {
+        font-size: 32px;
+        margin-bottom: 15px;
+        color: #333;
+        font-weight: 600;
+        text-align: left; /* Ensure heading is left-aligned */
+      }
+
+      .about-col-2 p {
+        font-size: 16px;
+        line-height: 1.7;
+        color: #666;
+        margin-bottom: 20px;
+        text-align: justify; /* Ensure text is justified */
+      }
+      
+      .about-col-2 img {
+        max-width: 100%;
+        height: auto;
+        display: block; /* Important for alignment */
+        margin: 0 auto;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      /* --- CORE PILLARS GRID (3x4 Layout) --- */
+      .pillars-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4 columns for desktop */
+        gap: 30px;
+        margin-top: 30px;
+        padding: 0 10px;
+      }
+
+      .pillar-item {
+        text-align: center;
+        padding: 30px 15px;
+        border: 1px solid #ff523b;
+        border-radius: 10px;
+        background: #fffafa;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .pillar-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(255, 82, 59, 0.2);
+        background-color: #fcebeb;
+      }
+
+      .pillar-item i {
+        font-size: 45px;
+        color: #ff523b;
+        margin-bottom: 15px;
+      }
+
+      .pillar-item h4 {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .pillar-item p {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.6;
+        text-align: center; /* Center-align text in the box */
+      }
+
+      /* --- GALLERY SECTION (3x4 Grid) --- */
+      .gallery-container {
+        padding: 60px 0;
+        background-color: #f4f4f4; /* Light gray background for contrast */
+        margin-top: 60px;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4 columns for desktop */
+        gap: 15px;
+        padding: 0 10px;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 250px; /* Fixed height for uniformity */
+        object-fit: cover; /* Ensures images cover the area without distortion */
+        border-radius: 8px;
+        transition: transform 0.3s, opacity 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .gallery-item img:hover {
+          transform: scale(1.05);
+          opacity: 0.9;
+      }
+      
+
+      /* --- Vision Section Style (Off-White) --- */
+      .vision-section {
+        background-color: #f7f7f7; /* Off-White Background */
+        color: #333;
+        padding: 60px 20px;
+        text-align: center;
+        margin-top: 50px;
+        border-top: 5px solid #ff523b;
+      }
+      .vision-section h2 {
+        color: #1a1a1a;
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+
+      /* --- Franchise Section Style --- */
+      .franchise-section {
+        background: #ffffff; 
+        padding: 60px 20px;
+        text-align: center;
+        margin-top: 60px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+      .franchise-info {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        margin-bottom: 30px;
+      }
+
+
+      /* --- Media Queries for Responsiveness --- */
+      @media only screen and (max-width: 1000px) {
+        .pillars-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+        }
+        .gallery-grid {
+            grid-template-columns: repeat(3, 1fr); /* 3 columns on tablets */
+        }
+      }
+      
+      @media only screen and (max-width: 800px) {
+        .about-col-2 {
+          flex-basis: 100%;
+          text-align: left; /* Keep text aligned left/justified */
+        }
+        .about-row {
+            justify-content: center;
+        }
+        .about-col-2:nth-child(2) {
+            order: 1; /* For mobile, text comes first in the second row */
+        }
+        .about-col-2:nth-child(1) {
+            order: 2;
+        }
+      }
+
+      @media only screen and (max-width: 600px) {
+        .pillars-grid {
+          grid-template-columns: 1fr; /* 1 column on small mobile */
+        }
+        .gallery-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+        }
+        .franchise-info {
+          flex-direction: column;
+          gap: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="navbar">
+          <div class="logo">
+            <a href="index.html">
+              <img src="NEW_LOGO.png" alt="THE SANDHU LABEL Logo" width="125px"
+            /></a>
+          </div>
+          <nav>
+            <ul id="MenuItems">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="products.html">Products</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="Contact.html">Contact</a></li>
+              <li><a href="account.html">Account</a></li>
+            </ul>
+          </nav>
+          <a href="cart.html">
+            <img src="cart.png" alt="Shopping Cart" width="30px" height="30px"
+          /></a>
+          <img
+            src="menu.png"
+            alt="Menu Icon"
+            class="menu-icon"
+            onclick="menutoggle()"
+          />
+        </div>
+      </div>
+    </div>
+    <hr style="margin-top: 0; border: none; border-top: 1px solid #ccc;" />
+
+    <div class="small-container about-us-content">
+      <h2 class="about-section-title">Our Legacy</h2>
+
+      <div class="about-row">
+        <div class="about-col-2">
+          <img
+            src="legacy.png"
+            alt="Image representing the founding of The Sandhu Label in 2002"
+          />
+        </div>
+        <div class="about-col-2">
+          <h2>The Foundation: 2002</h2>
+          <p>
+            THE SANDHU LABEL was conceived in **2002** out of a simple, yet powerful conviction: the market lacked athletic wear that truly balanced high-end **performance** with contemporary **style**. The available options were either highly durable but aesthetically basic, or trendy but compromised on quality. Our founder envisioned a brand that would bridge this gap, ensuring that every garment supports the intensity of a workout while looking effortlessly modern. This philosophy, built on **"Performance, Passion, and Style,"** has been the driving force behind our brand's evolution for over two decades.
+          </p>
+        </div>
+      </div>
+
+      <hr style="margin: 60px 0; border: none; border-top: 1px solid #eee;" />
+
+      <h2 class="about-section-title">Evolution of Excellence: 2002 - 2025</h2>
+      <div class="about-row" style="flex-direction: row-reverse;">
+        <div class="about-col-2">
+          <img
+            src="evolution.png"
+            alt="Timeline image showing company evolution and growth"
+          />
+        </div>
+        <div class="about-col-2">
+          <h2>A Journey of Consistent Growth and Trust</h2>
+          <p>
+            Our journey from a local retailer in **2002** to a nationwide brand has been marked by continuous innovation. Initial years focused on mastering fabric technology and achieving superior durability. By **2010**, we embraced the digital age with our first e-commerce platform, expanding our reach exponentially across India. The introduction of the successful **Franchise Model in 2018** accelerated our physical presence. Now, in **2025**, having achieved the major milestone of **100+ operational franchise stores**, we stand ready for the next phase: **global expansion**. This trajectory is a testament to the trust our customers have placed in our commitment to quality.
+          </p>
+        </div>
+      </div>
+
+      <hr style="margin: 60px 0; border: none; border-top: 1px solid #eee;" />
+      <h2 class="about-section-title">Our Core Pillars: What Defines THE SANDHU LABEL</h2>
+
+      <div class="pillars-grid">
+        <div class="pillar-item">
+          <i class="ri-ruler-line"></i>
+          <h4>Engineered Fit & Comfort</h4>
+          <p>We use advanced 3D body mapping and 4-way stretch fabrics for a precision fit, ensuring optimal mobility and muscle support. Our focus is on ergonomic design to maximize comfort and reduce chafing, allowing you to concentrate fully on your performance.</p>
+        </div>
+
+        <div class="pillar-item">
+          <i class="ri-lightbulb-flash-line"></i>
+          <h4>Innovation & Technology</h4>
+          <p>Our apparel integrates advanced technology like moisture-wicking, anti-microbial treatments, and UV protection. We constantly research new fabric science to deliver lightweight, breathable gear that enhances athletic output and maintains freshness.</p>
+        </div>
+
+        <div class="pillar-item">
+          <i class="ri-shield-check-line"></i>
+          <h4>Ethical & Sustainable Sourcing</h4>
+          <p>We are committed to responsibility, prioritizing ethically sourced, recycled, and organic materials. Our practices ensure fair labor and minimize our environmental footprint. Choosing our brand means supporting sustainability and transparent operations globally.</p>
+        </div>
+
+        <div class="pillar-item">
+          <i class="ri-medal-line"></i>
+          <h4>Unwavering Quality Assurance</h4>
+          <p>Every product undergoes strict, multi-stage quality control. From thread durability to colorfastness, we guarantee longevity and reliability. Our 23-year track record proves our commitment to providing durable, long-term value for your active lifestyle.</p>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-container">
+        <div class="small-container">
+            <h2 class="about-section-title">GALLERY</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="IMAGE.jpg" alt="THE SANDHU LABEL Image 1" /></div>
+                <div class="gallery-item"><img src="IMAGE4.webp" alt="THE SANDHU LABEL Image 2" /></div>
+                <div class="gallery-item"><img src="IMAGE2.png" alt="THE SANDHU LABEL Image 3" /></div>
+                <div class="gallery-item"><img src="IMAGE3.png" alt="THE SANDHU LABEL Image 4" /></div>
+                <div class="gallery-item"><img src="IMAGE1.webp" alt="THE SANDHU LABEL Image 5" /></div>
+                <div class="gallery-item"><img src="IMAGE5.png" alt="THE SANDHU LABEL Image 6" /></div>
+                <div class="gallery-item"><img src="IMAGE6.jpg" alt="THE SANDHU LABEL Image 7" /></div>
+                <div class="gallery-item"><img src="IMAGE7.png" alt="THE SANDHU LABEL Image 8" /></div>
+                <div class="gallery-item"><img src="IMAGE8.png" alt="THE SANDHU LABEL Image 9" /></div>
+                <div class="gallery-item"><img src="IMAGES9.avif" alt="THE SANDHU LABEL Image 10" /></div>
+                <div class="gallery-item"><img src="IMAGE10.jpg" alt="THE SANDHU LABEL Image 11" /></div>
+                <div class="gallery-item"><img src="IMAGE12.webp" alt="THE SANDHU LABEL Image 12" /></div>
+                </div>
+        </div>
+    </div>
+    <div class="vision-section">
+        <div class="small-container">
+            <h2>VISION</h2>
+            <p>
+                Having successfully secured a dominant position in the Indian market with **over 100 operational franchise stores**, THE SANDHU LABEL is now poised for **international expansion**. Our vision is to transform into a globally recognized athletic brand. We are currently preparing detailed strategies to enter key foreign markets. Our goal is to ensure that in every new country or major state we launch, we establish a **minimum of 10+ retail stores** to create immediate brand presence and accessibility. This is the decade we take performance wear from Indian excellence to world domination.
+            </p>
+            <img 
+              src="vision.png"
+              alt="Global map illustrating the brand's international vision" 
+              style="max-width: 500px; margin-top: 20px; border-radius: 10px;"
+            />
+            <!-- <h4>"Redefining Athleisure on the World Stage."</h4> -->
+        </div>
+    </div>
+
+    <div class="small-container franchise-section">
+        <h2 class="about-section-title" style="margin-top: 0;">FRANCHISES</h2>
+        <p>
+            Join the rapidly expanding network of THE SANDHU LABEL and capitalize on our proven business model and strong brand recognition. We offer comprehensive support, including site selection guidance, staff training, and ongoing marketing assistance, to ensure your franchise's success. This is an opportunity to be a crucial part of a brand that has consistently demonstrated growth and excellence since 2002.
+        </p>
+        
+        <div class="franchise-info">
+            <div>
+                <h3>100+</h3>
+                <p>Existing Stores (India)</p>
+            </div>
+            <div>
+                <h3>23 Years</h3>
+                <p>Industry Expertise</p>
+            </div>
+            <div>
+                <h3>Proven</h3>
+                <p>Return on Investment (ROI)</p>
+            </div>
+        </div>
+
+        <p>
+            **Franchise Requirement:** To discuss the detailed investment requirements, location criteria, and the next steps for acquiring a franchise, please contact our dedicated franchise development team.
+        </p>
+
+        <a href="tel:+919876543210" class="btn" style="background-color: #ff523b; color: white; padding: 15px 35px; border-radius: 5px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 15px;">
+            Inquire About Franchise: Call Us Now! 📞
+        </a>
+        <p style="margin-top: 10px; font-size: 14px; color: #777;">
+            **Direct Line to Franchise Team (Example): +91 62631 71727**
+        </p>
+    </div>
+
+    <div
+      class="footer"
+      style="
+        background-color: #000;
+        color: white;
+        padding: 40px 0;
+        text-align: center;
+        font-family: Arial, sans-serif;
+      "
+    >
+      <div class="container" style="max-width: 1500px; margin: auto">
+        <div
+          class="row"
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: flex-start;
+            gap: 30px;
+          "
+        >
+          <div class="footer-col-1" style="flex: 1; min-width: 220px">
+            <h3 style="margin-bottom: 15px">DOWNLOAD OUR APP</h3>
+            <p style="font-size: 14px">
+              DOWNLOAD APP FOR ANDROID AND IOS MOBILE PHONES GOOGLE PLAY
+            </p>
+            <div class="app-logo" style="margin-top: 10px">
+              <a href="https://play.google.com/store" target="_blank">
+                <img
+                  src="play-store.png"
+                  alt="Google Play"
+                  style="width: 130px; margin: 5px"
+                />
+              </a>
+              <a href="https://www.apple.com/app-store/" target="_blank">
+                <img
+                  src="app-store.png"
+                  alt="App Store"
+                  style="width: 130px; margin: 5px"
+                />
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-col-2" style="flex: 1; min-width: 300px">
+            <img
+              src="NEW_LOGO.png"
+              alt="The Sandhu Label"
+              style="width: 180px; margin-bottom: 15px"
+            />
+          </div>
+
+          <div class="footer-col-3" style="flex: 1; min-width: 220px">
+            <h3 style="margin-bottom: 15px">USEFUL LINKS</h3>
+            <div
+              style="
+                display: flex;
+                justify-content: center;
+                gap: 25px;
+                flex-wrap: wrap;
+              "
+            >
+              <a
+                href="https://www.coupons.com/"
+                target="_blank"
+                style="color: white; font-size: 28px; text-decoration: none"
+              >
+                <i class="ri-price-tag-3-fill"></i>
+              </a>
+              <a
+                href="https://blog.google/"
+                target="_blank"
+                style="color: white; font-size: 28px; text-decoration: none"
+              >
+                <i class="ri-article-fill"></i>
+              </a>
+              <a
+                href="https://www.amazon.in/gp/help/customer/display.html?nodeId=201819300"
+                target="_blank"
+                style="color: white; font-size: 28px; text-decoration: none"
+              >
+                <i class="ri-refresh-fill"></i>
+              </a>
+
+              <a
+                href="https://www.yoursite.com/privacy-policy"
+                target="_blank"
+                style="color: white; font-size: 28px; text-decoration: none"
+              >
+                <i class="ri-lock-2-fill"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-col-4" style="flex: 1; min-width: 220px">
+            <h3 style="margin-bottom: 15px">FOLLOW US</h3>
+            <div style="display: flex; justify-content: center; gap: 25px">
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                style="color: white; font-size: 26px; text-decoration: none"
+              >
+                <i class="ri-facebook-fill"></i>
+              </a>
+              <a
+                href="https://twitter.com/"
+                target="_blank"
+                style="color: white; font-size: 26px; text-decoration: none"
+              >
+                <i class="ri-twitter-fill"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                style="color: white; font-size: 26px; text-decoration: none"
+              >
+                <i class="ri-instagram-fill"></i>
+              </a>
+              <a
+                href="https://www.youtube.com/"
+                target="_blank"
+                style="color: white; font-size: 26px; text-decoration: none"
+              >
+                <i class="ri-youtube-fill"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <hr
+          style="margin: 30px auto; width: 80%; border: 0.5px solid #333"
+        />
+        <p style="font-size: 14px; color: #ccc">© 2025 - THE SANDHU LABEL</p>
+      </div>
+    </div>
+    <script src="toggleMenu.js"></script>
+    <script>
+      // NOTE: Ensure your 'toggleMenu.js' file contains the menutoggle() function 
+      // for the mobile menu to work correctly.
+    </script>
+  </body>
+</html>

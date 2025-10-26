@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- SANDHU -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>THE SANDHU LABEL</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+<!-- SANDHU -->
+    <style>
+      /* Reset/Base adjustments specific to this page */
+      .header {
+        /* Minimize the header height for the inner page */
+        height: auto;
+        min-height: 150px;
+        padding-bottom: 20px; 
+      }
+      
+      /* Main Contact Page Container */
+      .contact-page {
+        padding: 50px 0;
+        background: #f8f8f8; /* Light background for the content area */
+      }
+
+      .contact-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .contact-header h2 {
+        font-size: 38px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .contact-header p {
+        color: #555;
+        font-size: 16px;
+        max-width: 800px;
+        margin: auto;
+      }
+
+      /* Split content row for form and info */
+      .contact-content-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 40px;
+      }
+
+      .contact-form-col,
+      .contact-info-col {
+        flex-basis: calc(50% - 20px); /* Adjusting for gap */
+        min-width: 300px;
+        padding: 30px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        background: #fff;
+      }
+
+      .contact-form-col h3,
+      .contact-info-col h3 {
+        font-size: 26px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        color: #ff523b;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 10px;
+      }
+
+      /* Form Styling */
+      .contact-form .form-group {
+        margin-bottom: 20px;
+      }
+
+      .contact-form label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: #333;
+      }
+
+      .contact-form input[type="text"],
+      .contact-form input[type="email"],
+      .contact-form select,
+      .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-family: inherit;
+        font-size: 15px;
+      }
+
+      .contact-form textarea {
+        resize: vertical;
+      }
+
+      .response-time {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #888;
+      }
+
+      /* Direct Contact Info Styling */
+      .contact-info-col .info-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 25px;
+        gap: 15px;
+      }
+/* SANDHU */
+      .contact-info-col .info-item i {
+        font-size: 30px;
+        color: #ff523b;
+        margin-top: 5px;
+      }
+
+      .contact-info-col .info-item h4 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 3px;
+        color: #333;
+      }
+
+      .contact-info-col .info-item p {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      .contact-info-col .info-item a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      .contact-info-col .info-item small {
+        display: block;
+        color: #888;
+        font-size: 12px;
+        margin-top: 2px;
+      }
+
+      /* Live Chat Feature (NEW) */
+      .live-chat-box {
+        text-align: center;
+        background: #e6f7ff;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 30px;
+        border: 1px solid #cceeff;
+      }
+      
+      .live-chat-box h4 {
+          color: #333;
+          margin-bottom: 10px;
+      }
+
+      .live-chat-box .btn-chat {
+        display: inline-block;
+        background: #25d366; /* WhatsApp Green */
+        color: #fff;
+        padding: 10px 25px;
+        margin-top: 10px;
+        border-radius: 30px;
+        transition: background 0.5s;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 16px;
+      }
+
+      .live-chat-box .btn-chat:hover {
+        background: #128c7e;
+      }
+
+      /* FAQ/Help Center Section (NEW) */
+      .faq-section {
+        text-align: center;
+        margin-top: 60px;
+        padding: 40px 20px;
+        border-top: 1px solid #ddd;
+        background: #fff;
+        border-radius: 10px;
+      }
+
+      .faq-section h3 {
+        font-size: 30px;
+        margin-bottom: 25px;
+        color: #333;
+        font-weight: 600;
+      }
+
+      .faq-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .faq-links a {
+        text-decoration: none;
+        color: #ff523b;
+        padding: 12px 25px;
+        border: 2px solid #ff523b;
+        border-radius: 30px;
+        transition: all 0.3s;
+        font-weight: 500;
+        font-size: 15px;
+      }
+
+      .faq-links a:hover {
+        background: #ff523b;
+        color: #fff;
+        box-shadow: 0 4px 8px rgba(255, 82, 59, 0.4);
+      }
+
+      /* Google Map Section */
+      .map-section {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #f0f0f0;
+      }
+
+      .map-section h4 {
+        color: #333;
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
+
+      .map-section iframe {
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* Media Query for responsiveness */
+      @media only screen and (max-width: 800px) {
+        .contact-content-row {
+          flex-direction: column;
+          gap: 30px;
+        }
+
+        .contact-form-col,
+        .contact-info-col {
+          flex-basis: 100%;
+          min-width: unset;
+        }
+        
+        .faq-links {
+            flex-direction: column;
+        }
+      }
+      /* SANDHU */
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="navbar">
+          <div class="logo">
+            <a href="index.html">
+              <img src="NEW_LOGO.png" alt="THE SANDHU LABEL Logo" width="300px"
+            /></a>
+          </div>
+          <nav>
+            <ul id="MenuItems">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="products.html">Products</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="Contact.html">Contact</a></li>
+              <li><a href="account.html">Account</a></li>
+            </ul>
+          </nav>
+          <a href="cart.html"
+            ><img src="cart.png" alt="Cart" width="30px" height="30px"
+          /></a>
+          <img
+            src="menu.png"
+            alt="Menu"
+            class="menu-icon"
+            onclick="menutoggle()"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="contact-page">
+      <div class="small-container">
+        <div class="contact-header">
+          <h2>Get in Touch with **THE SANDHU LABEL**</h2>
+          <!-- <p>
+            Questions? Need support with an order? We're here to help you rise
+            above. Choose the best way to contact us below.
+          </p> -->
+        </div>
+
+        <div class="contact-content-row">
+          <div class="contact-form-col">
+            <h3>Send us a Message</h3>
+            <form action="#" method="POST" class="contact-form">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Your email for our reply"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="subject">Inquiry Subject</label>
+                <select id="subject" name="subject" required>
+                  <option value="" disabled selected>
+                    Select an Inquiry Type
+                  </option>
+                  <option value="order_issue">Order/Shipping Issue</option>
+                  <option value="product_query">Product Information</option>
+                  <option value="return_exchange">Returns & Exchange</option>
+                  <option value="wholesale">Wholesale/Partnership</option>
+                  <option value="general">General Inquiry</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="6"
+                  placeholder="Tell us how we can help..."
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn">Send Message &rarr;</button>
+              <p class="response-time">
+                **Expected Response Time:** 1-2 Business Days.
+              </p>
+            </form>
+          </div>
+<!-- SANDHU -->
+          <div class="contact-info-col">
+            <div class="live-chat-box">
+              <h4>Need Instant Help?</h4>
+              <p>For urgent queries, chat with us on WhatsApp.</p>
+              <a
+                href="https://wa.me/919876543210"
+                target="_blank"
+                class="btn-chat"
+              >
+                <i class="ri-whatsapp-line"></i> Start Live Chat
+              </a>
+            </div>
+            
+            <h3>Direct Contact Options</h3>
+            <div class="info-item">
+              <i class="ri-mail-line"></i>
+              <div>
+                <h4>Customer Support Email</h4>
+                <p>
+                  <a href="mailto:support@thesandhulabel.com"
+                    >support@thesandhulabel.com</a
+                  >
+                </p>
+                <small>For all order and product questions.</small>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <i class="ri-phone-line"></i>
+              <div>
+                <h4>Phone / Helpline</h4>
+                <p>
+                  <a href="tel:+91-6263171727">+91 6263171727</a>
+                </p>
+                <small>Call between 10 AM - 6 PM IST (Mon-Sat).</small>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <i class="ri-map-pin-line"></i>
+              <div>
+                <h4>Our Headquarters</h4>
+                <p>
+                   THE SANDHU LABEL, 25th Floor, 7A, Cyber City, DLF Cyber City, DLF Phase 2, Sector 24, Gurugram, Haryana 122002
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-section">
+            <h3>Quick Answers in Our Help Center</h3>
+            <div class="faq-links">
+                <a href="account.html#order-tracking"><i class="ri-truck-line"></i> Track My Order Status</a>
+                <a href="products.html#size-chart"><i class="ri-ruler-line"></i> Size & Fit Guide</a>
+                <a href="account.html#returns"><i class="ri-refresh-line"></i> Return & Exchange Policy</a>
+                <a href="index.html#shipping-info"><i class="ri-bank-card-line"></i> Payment & Shipping Info</a>
+            </div>
+        </div>
+        
+        <div class="map-section">
+            <h4>Our Location (For Reference)</h4>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.9904250269097!2d77.2273215150824!3d28.62916848242099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4e13.1!3m3!1m2!1s0x390cfd1797c27705%3A0x67a3044e13e4b77c!2sConnaught%20Place%2C%20New%20Delhi%2C%20Delhi%20110001!5e0!3m2!1sen!2sin!4v1625060456123!5m2!1sen!2sin" 
+                width="100%" 
+                height="300" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+
+      </div>
+    </div>
+    <div
+      class="footer"
+      style="
+        background-color: #000;
+        color: white;
+        padding: 40px 0;
+        text-align: center;
+        font-family: Arial, sans-serif;
+      "
+    >
+      <div class="container" style="max-width: 1500px; margin: auto">
+        <div
+          class="row"
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: flex-start;
+            gap: 30px;
+          "
+        >
+          <div class="footer-col-1" style="flex: 1; min-width: 220px">
+            <h3 style="margin-bottom: 15px">DOWNLOAD OUR APP</h3>
+            <p style="font-size: 14px">
+              DOWNLOAD APP FOR ANDROID AND IOS MOBILE PHONES GOOGLE PLAY
+            </p>
+            <div class="app-logo" style="margin-top: 10px">
+              <a href="https://play.google.com/store" target="_blank">
+                <img
+                  src="play-store.png"
+                  alt="Google Play"
+                  style="width: 130px; margin: 5px"
+                />
+              </a>
+              <a href="https://www.apple.com/app-store/" target="_blank">
+                <img
+                  src="app-store.png"
+                  alt="App Store"
+                  style="width: 130px; margin: 5px"
+                />
+              </a>
+            </div>
+          </div>
+<!-- SANDHU -->
+          <div class="footer-col-2" style="flex: 1; min-width: 300px">
+            <img
+              src="NEW_LOGO.png"
+              alt="The Sandhu Label"
+              style="width: 180px; margin-bottom: 15px"
+            />
+          </div>
+
+          <div class="footer-col-3" style="flex: 1; min-width: 220px">
+            <h3 style="margin-bottom: 15px">USEFUL LINKS</h3>
+            <div
+              style="
+                display: flex;
+                justify-content: center;
+                gap: 25px;
+                flex-wrap: wrap;
+              "
+            >
+              <a
+                href="https://www.coupons.com/"
+                target="_blank"
+                style="color: white; font-size: 28px; text-decoration: none"
+              >
+                <i class="ri-price-tag-3-fill"></i>
+              </a>
+              <a
+                href="https://blog.google/"
+                target="_blank"
+                style="color: white; font-size: 28px; text-decoration: none"
+              >
+                <i class="ri-article-fill"></i>
+              </a>
+              <a
+                href="https://www.amazon.in/gp/help/customer/display.html?nodeId=201819300"
+                target="_blank"
+                style="color: white; font-size: 28px; text-decoration: none"
+              >
+                <i class="ri-refresh-fill"></i>
+              </a>
+
+              <a
+                href="https://www.yoursite.com/privacy-policy"
+                target="_blank"
+                style="color: white; font-size: 28px; text-decoration: none"
+              >
+                <i class="ri-lock-2-fill"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-col-4" style="flex: 1; min-width: 220px">
+            <h3 style="margin-bottom: 15px">FOLLOW US</h3>
+            <div
+              style="display: flex; justify-content: center; gap: 25px"
+            >
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                style="color: white; font-size: 26px; text-decoration: none"
+              >
+                <i class="ri-facebook-fill"></i>
+              </a>
+              <a
+                href="https://twitter.com/"
+                target="_blank"
+                style="color: white; font-size: 26px; text-decoration: none"
+              >
+                <i class="ri-twitter-fill"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                style="color: white; font-size: 26px; text-decoration: none"
+              >
+                <i class="ri-instagram-fill"></i>
+              </a>
+              <a
+                href="https://www.youtube.com/"
+                target="_blank"
+                style="color: white; font-size: 26px; text-decoration: none"
+              >
+                <i class="ri-youtube-fill"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <hr style="margin: 30px auto; width: 80%; border: 0.5px solid #333" />
+        <p style="font-size: 14px; color: #ccc">© 2025 - THE SANDHU LABEL</p>
+      </div>
+    </div>
+
+
+
+
+    <script src="toggleMenu.js"></script>
+
+
+
+    <script>
+      /* Toggle menu logic (copied from your original index) */
+      var MenuItems = document.getElementById("MenuItems");
+      MenuItems.style.maxHeight = "0px";
+      function menutoggle() {
+        if (MenuItems.style.maxHeight == "0px") {
+          MenuItems.style.maxHeight = "200px";
+        } else {
+          MenuItems.style.maxHeight = "0px";
+        }
+      }
+    </script>
+  </body>
+</html>
+<!-- SANDHU -->
